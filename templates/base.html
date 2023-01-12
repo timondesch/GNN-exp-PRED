@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-centric taxonomy of GNN explainability methods</title>
+</head>
+
+<body>
+    <div style="margin-top: 50px;">
+        <h1>User-centric taxonomy of GNN explainability methods</h1>
+
+        <form action="/add" method="post">
+            <div>
+                <input type="text" name="title" placeholder="Add a method..."><br>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+
+        <form action="/filter" method="post">
+            <div>
+                <label>Category</label>
+                <div>
+                    <input type="radio" name="filter" id="edge" value="edge">
+                    <label for="edge">Edge</label>
+                    <input type="radio" name="filter" id="node" value="node">
+                    <label for="node">Node</label>
+                </div>
+            </div>
+            <button type="submit">Filter</button>
+        </form>
+
+        <hr>
+
+        {% for item in l %}
+        <div>
+            <p>{{item[0] }} | {{item[1] }} | {{ item[2] }}</p>
+            <a href="/update/{{ item.id }}">Update</a>
+            <a href="/delete/{{ item.id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
