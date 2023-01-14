@@ -10,7 +10,6 @@ backup_list = original_list
 
 @app.route("/")
 def home():
-    print(original_list)
     return render_template("base.html", l=original_list)
 
 
@@ -24,6 +23,7 @@ def add():
 @app.post("/filter")
 def filter():
     global original_list
-    title = request.form["filter"]
-    original_list = [elem for elem in backup_list if elem[0] == [title]]
+    title = request.form
+    if len(title) == 0: original_list = backup_list
+    else: original_list = [elem for elem in backup_list if elem[0] == [title["filter"]]]
     return redirect(url_for("home"))
