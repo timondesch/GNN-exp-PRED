@@ -17,7 +17,6 @@ def home():
 def add():
     title = request.form.get("title")
     original_list.append([[title], [title], [title]])
-    backup_list.append([[title], [title], [title]])
     return redirect(url_for("home"))
 
 @app.post("/filter")
