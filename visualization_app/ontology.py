@@ -17,6 +17,8 @@ with onto:
 
     # class PGExplainer(Explanation_Method): pass
 
+    # class PGM_Explainer(Explanation_Method): pass
+
     # class GraphMASK(Explanation_Method): pass
 
     # class GNN_LRP(Explanation_Method): pass
