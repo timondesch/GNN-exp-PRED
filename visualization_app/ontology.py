@@ -14,7 +14,10 @@ with onto:
     class Edge(Item): pass
     class Graph(Item): pass
 
-    class Explanation_Method(ow2.Thing): pass
+    class Explanation_Method(ow2.Thing):
+        def details(self):
+            print(self.label[0])
+
     class Instance_level_explanation(Explanation_Method): pass
     class Gradient_features(Instance_level_explanation): pass
     class Perturbations(Instance_level_explanation): pass
@@ -40,7 +43,10 @@ with onto:
     # class XGNN(Explanation_Method): pass
 
 
-    class Task(ow2.Thing): pass
+    class Task(ow2.Thing):
+        def __init__(self, name=None, namespace=None, **kargs):
+            super().__init__(name, namespace, **kargs)
+        
 
     # Subclass Tasks
     # class Node_C_R(Task): pass
@@ -96,11 +102,11 @@ base_format = Explanation_Format("base_format")
 subgraph = Explanation_Format("subgraph", label="subgraph")
 walk = Explanation_Format("walk", label="walk")
 typical_graph = Explanation_Format("typical_graph", label="typical_graph")
-soft_mask_edge = Explanation_Format("soft_mask_edge", label="soft_mask_edge", applies_on=[Edge])
-soft_mask_node = Explanation_Format("soft_mask_node", label="soft_mask_node", applies_on=[Node])
-hard_mask_edge = Explanation_Format("hard_mask_edge", label="hard_mask_edge", applies_on=[Edge])
-hard_mask_node = Explanation_Format("hard_mask_node", label="hard_mask_node", applies_on=[Node])
-bayesian_network = Explanation_Format("bayesian_network", label="bayesian_network")
+soft_mask_edge = Soft_Mask("soft_mask_edge", label="soft_mask_edge", applies_on=[Edge])
+soft_mask_node = Soft_Mask("soft_mask_node", label="soft_mask_node", applies_on=[Node])
+hard_mask_edge = Hard_Mask("hard_mask_edge", label="hard_mask_edge", applies_on=[Edge])
+hard_mask_node = Hard_Mask("hard_mask_node", label="hard_mask_node", applies_on=[Node])
+bayesian_network = PGM("bayesian_network", label="bayesian_network")
 
 # tasks
 node_classification_regression = Task("node_classification_regression", label="node_classification_regression", focuses_on=[Node])
@@ -125,8 +131,6 @@ gnnlrp = Decomposition("gnnlrp", label="gnnlrp", explains_with=[walk],
     can_explain=[node_classification_regression, graph_classification_regression])
 xgnn = Generation("xgnn", label="xgnn", explains_with=[typical_graph],
     can_explain=[graph_classification_regression])
-
-
 
 
 # print(list(ow2.default_world.sparql("""
@@ -157,17 +161,58 @@ print(list(ow2.default_world.sparql(f'''
         ?x a ?c .
         ?c rdfs:subClassOf* onto:Explanation_Method .
         
-        ?x onto:explains_with onto:{subgraph.label[0]} .
+        ?x onto:explains_with  ?d .
+        ?d rdfs:subClassOf* onto:{subgraph.label[0]} .
+        ?x onto:can_explain onto:{node_classification_regression.label[0]} .
     }}''')))
 
-print(list(ow2.default_world.sparql(f'''
-    SELECT ?x WHERE
-    {{
-        ?x a ?c .
-        ?c rdfs:subClassOf* onto:Explanation_Method .
-        
-        ?x onto:explains_with ?c .
-        ?c rdfs:subClassOf* onto:{"Explanation_Format"} .
-    }}''')))
 
-# print(base_format.is_a[0])
+def sparql_query(format, task):
+    form_query = f'''
+            ?x onto:explains_with ?d .
+            {{
+                ?d a ?f .
+                ?f rdfs:subClassOf* ?g .
+                ?g rdfs:subClassOf* onto:{format} .
+            }}
+            UNION
+            {{
+                ?d a ?e .
+                ?e rdfs:subClassOf* onto:{format} .
+            }}
+            UNION
+            {{
+                ?d rdfs:subClassOf* onto:{format}
+            }}
+            '''
+
+    task_query = f'''
+            ?x onto:can_explain ?y .
+            {{
+                ?y rdfs:subClassOf* onto:{task} .
+            }}
+            UNION
+            {{
+                ?y a ?z .
+                ?z rdfs:subClassOf* onto:{task} .
+            }}
+        '''
+
+    query = f'''
+        SELECT DISTINCT ?x WHERE
+        {{
+            ?x a ?c .
+            ?c rdfs:subClassOf* onto:Explanation_Method .
+            
+            {form_query}
+            {task_query}
+
+        }}'''
+    
+    values = list(ow2.default_world.sparql(query))
+    
+    return values
+
+if __name__ == '__main__':
+    for method in sparql_query("Hard_Mask", "Task"):
+        print(method[0].details())
