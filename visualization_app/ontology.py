@@ -17,6 +17,7 @@ with onto:
     class Explanation_Method(ow2.Thing):
         def details(self):
             print(self.label[0])
+            return self.label[0]
 
     class Instance_level_explanation(Explanation_Method): pass
     class Gradient_features(Instance_level_explanation): pass
