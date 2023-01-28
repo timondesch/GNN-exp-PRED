@@ -145,26 +145,26 @@ xgnn = Generation("xgnn", label="xgnn", explains_with=[typical_graph],
     # ?s rdfs:label "subgraph" . }
 # """)))
 
-print(list(ow2.default_world.sparql("""
-    SELECT ?x WHERE
-    {
-        ?x a ?c .
-        ?c rdfs:subClassOf* onto:Explanation_Method .
+# print(list(ow2.default_world.sparql("""
+#     SELECT ?x WHERE
+#     {
+#         ?x a ?c .
+#         ?c rdfs:subClassOf* onto:Explanation_Method .
         
-        ?x onto:explains_with ?m .
-        ?m rdfs:subClassOf* onto:Explanation_Format .
-    }""")))
+#         ?x onto:explains_with ?m .
+#         ?m rdfs:subClassOf* onto:Explanation_Format .
+#     }""")))
 
-print(list(ow2.default_world.sparql(f'''
-    SELECT ?x WHERE
-    {{
-        ?x a ?c .
-        ?c rdfs:subClassOf* onto:Explanation_Method .
+# print(list(ow2.default_world.sparql(f'''
+#     SELECT ?x WHERE
+#     {{
+#         ?x a ?c .
+#         ?c rdfs:subClassOf* onto:Explanation_Method .
         
-        ?x onto:explains_with  ?d .
-        ?d rdfs:subClassOf* onto:{subgraph.label[0]} .
-        ?x onto:can_explain onto:{node_classification_regression.label[0]} .
-    }}''')))
+#         ?x onto:explains_with  ?d .
+#         ?d rdfs:subClassOf* onto:{subgraph.label[0]} .
+#         ?x onto:can_explain onto:{node_classification_regression.label[0]} .
+#     }}''')))
 
 
 def sparql_query(format, task):
