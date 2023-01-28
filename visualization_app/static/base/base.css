@@ -23,7 +23,7 @@ h1 {
   display: inline-flex;
   background: #fff;
   min-height: 100px;
-  width: 40%;
+  width: 80%;
   min-width: 400px;
   align-items: center;
   justify-content: space-evenly;
@@ -44,6 +44,7 @@ h1 {
 
 .wrapper .option{
   background: #fff;
+  font-size: 20px;
   height: 60px;
   width: 100%;
   display: flex;
@@ -97,17 +98,17 @@ input {
 input[type="radio"]{
   display: none;
 }
-#node:checked:checked ~ .node,
-#edge:checked:checked ~ .edge{
+
+input[type="radio"]:checked:checked + label {
   border-color: #0069d9;
   background: #0069d9;
 }
-#node:checked:checked ~ .node .dot,
-#edge:checked:checked ~ .edge .dot{
+
+
+input[type="radio"]:checked:checked + label .dot {
   background: #fff;
 }
-#node:checked:checked ~ .node .dot::before,
-#edge:checked:checked ~ .edge .dot::before{
+input[type="radio"]:checked:checked + label .dot::before {
   opacity: 1;
   transform: scale(1);
 }
@@ -115,7 +116,6 @@ input[type="radio"]{
   font-size: 20px;
   color: #808080;
 }
-#node:checked:checked ~ .node span,
-#edge:checked:checked ~ .edge span{
+input[type="radio"]:checked:checked + label span {
   color: #fff;
 }
