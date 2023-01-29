@@ -65,8 +65,8 @@ h1 {
 }
 
 .wrapper button{
-    font-size: 20px;
-    width: 100px !important;
+    font-size: 30px !important;
+    width: 20% !important;
 }
 
 
@@ -120,11 +120,18 @@ input[type="radio"]:checked:checked + label span {
   color: #fff;
 }
 
+/* Disabled RB effect */
+
 input[type="radio"]:disabled + label{
   background-color: lightgrey;
   color: #fff;
+  border-color: #808080;
 }
 
 input[type="radio"]:disabled + label span{
-  color: #fff;
+  color: #808080;
+}
+
+input[type="radio"]:disabled + label .dot{
+  background: #fff;
 }
