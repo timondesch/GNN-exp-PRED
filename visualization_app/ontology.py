@@ -116,13 +116,15 @@ edge_prediction = Task("edge_prediction", label="edge_prediction", focuses_on=[E
 graph_classification_regression = Task("graph_classification_regression", label="graph_classification_regression", focuses_on=[Graph])
 community_detection = Task("community_detection", label="community_detection")
 graph_clustering = Task("graph_clustering", label="graph_clustering", focuses_on=[Graph])
-graph_generation = Task("graph_generation", label="graph_generation", focuses_on=[Graph])
+graph_matching = Task("graph_matching", label="graph_matching", focuses_on=[Graph])
 
 # methods
 base_method = Explanation_Method("base_method")
 subgraphx = Perturbations("subgraphx", label="subgraphx", explains_with=[subgraph],
     can_explain=[node_classification_regression, edge_prediction, graph_classification_regression])
 gnnexplainer = Perturbations("gnnexplainer", label="gnnexplainer", explains_with=[soft_mask_edge, soft_mask_node],
+    can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
+pgexplainer = Perturbations("pgexplainer", label="pgexplainer", explains_with=[hard_mask_edge],
     can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
 graphmask = Perturbations("graphmask", label="graphmask", explains_with=[hard_mask_edge],
     can_explain=[node_classification_regression, graph_classification_regression])

@@ -37,6 +37,25 @@
                     </label>
             </div> -->
 
+
+            <div class="wrapper">
+                    <input type="radio" name="type" id="multi" value="multi" checked>
+                    <label for="multi" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
+                        element.disabled=false
+                    });">
+                        <div class="dot"></div>
+                        <span>Multiple graphs</span>
+                    </label>
+
+                    <input type="radio" name="type" id="solo" value="solo">
+                    <label for="solo" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
+                        element.disabled=true
+                    });">
+                        <div class="dot"></div>
+                        <span>Unique graph</span>
+                    </label>
+            </div>
+
             <div class="wrapper">
                     <input type="radio" name="task" id="any" value="Task" checked>
                     <label for="any" class="option">
@@ -62,24 +81,26 @@
                         <span>EP</span>
                     </label>
 
-                    <input type="radio" name="task" id="GCR" value="graph_classification_regression">
-                    <label for="GCR" class="option">
-                        <div class="dot"></div>
-                        <span>GCR</span>
-                    </label>
-
                     <input type="radio" name="task" id="CD" value="community_detection">
                     <label for="CD" class="option">
                         <div class="dot"></div>
                         <span>CD</span>
                     </label>
 
-                    <input type="radio" name="task" id="GC" value="graph_clustering">
-                    <label for="GC" class="option">
+                    <input type="radio" name="task" id="GCR" value="graph_classification_regression">
+                    <label for="GCR" class="option">
                         <div class="dot"></div>
-                        <span>GC</span>
+                        <span>GCR</span>
+                    </label>
+
+                    <input type="radio" name="task" id="GM" value="graph_matching">
+                    <label for="GM" class="option">
+                        <div class="dot"></div>
+                        <span>GM</span>
                     </label>
             </div>
+
+
             <div class="wrapper">
                     <select name="format" class="option">
                         <option value="Explanation_Format">Any format</option>
