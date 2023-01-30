@@ -7,7 +7,7 @@ original_list = [[["edge"], ["prediction"], ["PGM-explainer"]],
             [["edge"], ["classification"], ["subgraphx"]],
             [["node"], ["prediction"], ["GNNexplainer"]]]
 
-original_list = ["Enter some criteria to get started."]
+original_list = [{"name":"Enter some criteria to get started."}]
 
 base_status = ""
 
@@ -37,8 +37,10 @@ def filter():
     global original_list, base_status
     title = request.form
 
+    print(title)
     tmp_list = sparql_query(title["format"], title["task"])
     original_list = tmp_list
     original_list = [x[0].details() for x in tmp_list]
-    base_status = f"explaining {title['task']} with {title['format']}"
+    print(title)
+    base_status = f"explaining {label_query(title['task']).describe()} with {label_query(title['format']).describe()}."
     return redirect(url_for("home"))

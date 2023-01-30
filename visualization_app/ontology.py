@@ -16,7 +16,6 @@ with onto:
 
     class Explanation_Method(ow2.Thing):
         def details(self):
-            print(self.label[0])
             return self.label[0]
 
     class Instance_level_explanation(Explanation_Method): pass
@@ -45,9 +44,14 @@ with onto:
 
 
     class Task(ow2.Thing):
-        def __init__(self, name=None, namespace=None, **kargs):
+        def __init__(self, description="any task", name=None, namespace=None, label=None, **kargs):
+            self.description = description
             super().__init__(name, namespace, **kargs)
+            self.label = label
+            self.description = description
         
+        def describe(self):
+            return self.description
 
     # Subclass Tasks
     # class Node_C_R(Task): pass
@@ -66,7 +70,14 @@ with onto:
 
 
 
-    class Explanation_Format(ow2.Thing): pass
+    class Explanation_Format(ow2.Thing):
+        def __init__(self, description="any format", name=None, namespace=None, label=None, **kargs):
+            super().__init__(name, namespace, **kargs)
+            self.label = label
+            self.description = description
+
+        def describe(self):
+            return self.description
 
     # Subclass Explanation Formats
 
@@ -97,78 +108,44 @@ with onto:
     class applies_on(Mask >> Item, ow2.ObjectProperty): pass
     class focuses_on(Task >> Item, ow2.ObjectProperty): pass
 
-base_format = Explanation_Format("base_format")
+base_format = Explanation_Format(description="any explanation format", label="Explanation_Format")
+base_task = Task(description="any task", label="Task")
 
 # formats
-subgraph = Explanation_Format("subgraph", label="subgraph")
-walk = Explanation_Format("walk", label="walk")
-typical_graph = Explanation_Format("typical_graph", label="typical_graph")
-soft_mask_edge = Soft_Mask("soft_mask_edge", label="soft_mask_edge", applies_on=[Edge])
-soft_mask_node = Soft_Mask("soft_mask_node", label="soft_mask_node", applies_on=[Node])
-hard_mask_edge = Hard_Mask("hard_mask_edge", label="hard_mask_edge", applies_on=[Edge])
-hard_mask_node = Hard_Mask("hard_mask_node", label="hard_mask_node", applies_on=[Node])
-bayesian_network = PGM("bayesian_network", label="bayesian_network")
+subgraph = Explanation_Format(name="subgraph", description="a subgraph", label="subgraph")
+walk = Explanation_Format(name="walk", description="a graph walk", label="walk")
+typical_graph = Explanation_Format(name="typical_graph", description="a typical graph", label="typical_graph")
+soft_mask_edge = Soft_Mask(name="soft_mask_edge", description="a soft mask on edges", label="soft_mask_edge", applies_on=[Edge])
+soft_mask_node = Soft_Mask(name="soft_mask_node", description="a soft mask on nodes", label="soft_mask_node", applies_on=[Node])
+hard_mask_edge = Hard_Mask(name="hard_mask_edge", description="a hard mask on edges", label="hard_mask_edge", applies_on=[Edge])
+hard_mask_node = Hard_Mask(name="hard_mask_node", description="a hard mask on nodes", label="hard_mask_node", applies_on=[Node])
+bayesian_network = PGM(name="bayesian_network", description="a Bayesian network", label="bayesian_network")
 
 # tasks
-node_classification_regression = Task("node_classification_regression", label="node_classification_regression", focuses_on=[Node])
-edge_classification_regression = Task("edge_classification_regression", label="edge_classification_regression", focuses_on=[Edge])
-edge_prediction = Task("edge_prediction", label="edge_prediction", focuses_on=[Edge])
-graph_classification_regression = Task("graph_classification_regression", label="graph_classification_regression", focuses_on=[Graph])
-community_detection = Task("community_detection", label="community_detection")
-graph_clustering = Task("graph_clustering", label="graph_clustering", focuses_on=[Graph])
-graph_matching = Task("graph_matching", label="graph_matching", focuses_on=[Graph])
+node_classification_regression = Task(name="node_classification_regression", description="node classification and/or regression", label="node_classification_regression", focuses_on=[Node])
+edge_classification_regression = Task(name="edge_classification_regression", description="edge classification and/or regression", label="edge_classification_regression", focuses_on=[Edge])
+edge_prediction = Task(name="edge_prediction", label="edge_prediction", description="edge prediction", focuses_on=[Edge])
+graph_classification_regression = Task(name="graph_classification_regression", description="graph classification and/or regression", label="graph_classification_regression", focuses_on=[Graph])
+community_detection = Task(name="community_detection", description="community detection", label="community_detection")
+graph_clustering = Task(name="graph_clustering", description="graph clustering", label="graph_clustering", focuses_on=[Graph])
+graph_matching = Task(name="graph_matching", description="graph matching", label="graph_matching", focuses_on=[Graph])
 
 # methods
-base_method = Explanation_Method("base_method")
-subgraphx = Perturbations("subgraphx", label="subgraphx", explains_with=[subgraph],
+base_method = Explanation_Method(name="base_method")
+subgraphx = Perturbations(name="subgraphx", label="subgraphx", explains_with=[subgraph],
     can_explain=[node_classification_regression, edge_prediction, graph_classification_regression])
-gnnexplainer = Perturbations("gnnexplainer", label="gnnexplainer", explains_with=[soft_mask_edge, soft_mask_node],
+gnnexplainer = Perturbations(name="gnnexplainer", label="gnnexplainer", explains_with=[soft_mask_edge, soft_mask_node],
     can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
-pgexplainer = Perturbations("pgexplainer", label="pgexplainer", explains_with=[hard_mask_edge],
+pgexplainer = Perturbations(name="pgexplainer", label="pgexplainer", explains_with=[hard_mask_edge],
     can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
-graphmask = Perturbations("graphmask", label="graphmask", explains_with=[hard_mask_edge],
+graphmask = Perturbations(name="graphmask", label="graphmask", explains_with=[hard_mask_edge],
     can_explain=[node_classification_regression, graph_classification_regression])
-pgmexplainer = Surrogate("pgmexplainer", label="pgmexplainer", explains_with=[bayesian_network],
+pgmexplainer = Surrogate(name="pgmexplainer", label="pgmexplainer", explains_with=[bayesian_network],
     can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
-gnnlrp = Decomposition("gnnlrp", label="gnnlrp", explains_with=[walk],
+gnnlrp = Decomposition(name="gnnlrp", label="gnnlrp", explains_with=[walk],
     can_explain=[node_classification_regression, graph_classification_regression])
-xgnn = Generation("xgnn", label="xgnn", explains_with=[typical_graph],
+xgnn = Generation(name="xgnn", label="xgnn", explains_with=[typical_graph],
     can_explain=[graph_classification_regression])
-
-
-# print(list(ow2.default_world.sparql("""
-    # SELECT (COUNT(?x) AS ?nb)
-    # {?x a onto:Explanation_Format .}
-# """)))
-# 
-# print(list(ow2.default_world.sparql("""
-    # SELECT (COUNT(?x) AS ?nb)
-    # {?x a onto:Explanation_Method .
-    # ?x onto:explains_with ?s .
-    # ?s rdfs:label "subgraph" . }
-# """)))
-
-# print(list(ow2.default_world.sparql("""
-#     SELECT ?x WHERE
-#     {
-#         ?x a ?c .
-#         ?c rdfs:subClassOf* onto:Explanation_Method .
-        
-#         ?x onto:explains_with ?m .
-#         ?m rdfs:subClassOf* onto:Explanation_Format .
-#     }""")))
-
-# print(list(ow2.default_world.sparql(f'''
-#     SELECT ?x WHERE
-#     {{
-#         ?x a ?c .
-#         ?c rdfs:subClassOf* onto:Explanation_Method .
-        
-#         ?x onto:explains_with  ?d .
-#         ?d rdfs:subClassOf* onto:{subgraph.label[0]} .
-#         ?x onto:can_explain onto:{node_classification_regression.label[0]} .
-#     }}''')))
-
 
 def sparql_query(format, task):
     form_query = f'''
@@ -216,6 +193,17 @@ def sparql_query(format, task):
     
     return values
 
+def label_query(label):
+    query = f'''
+        SELECT DISTINCT ?x 
+        {{
+            ?x rdfs:label "{label}" .
+        }}
+        '''
+    
+    values = list(ow2.default_world.sparql(query))
+    return values[0][0]
+
 if __name__ == '__main__':
     for method in sparql_query("Hard_Mask", "Task"):
-        print(method[0].details())
+        print(label_query("subgraph"))

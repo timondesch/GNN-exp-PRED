@@ -131,7 +131,7 @@
         <p class="option">No method matches the entered criteria.</p>
         {% else %}
         {% for item in l %}
-            <p class="option">{{item}}</p>
+            <p class="option">{{item['name']}}</p>
         {% endfor %}
         {% endif %}
         </div>
