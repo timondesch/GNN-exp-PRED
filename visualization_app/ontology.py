@@ -15,9 +15,31 @@ with onto:
     class Graph(Item): pass
 
     class Explanation_Method(ow2.Thing):
+        def __init__(self, description="An explanation method", image=None, link=None, name=None, namespace=None, label=None, **kargs):
+            super().__init__(name, namespace, **kargs)
+            self.label = label
+            self.description = description
+            self.link = link
+            self.image = image
+
+        def get_link(self):
+            return self.link
+
+        def get_image(self):
+            return self.image
+
+        def get_label(self):
+            return self.label
+        
+        def get_name(self):
+            return self.name
+
+        def get_description(self):
+            return self.description
+
         def details(self):
             return self.label[0]
-
+            
     class Instance_level_explanation(Explanation_Method): pass
     class Gradient_features(Instance_level_explanation): pass
     class Perturbations(Instance_level_explanation): pass
@@ -132,19 +154,32 @@ graph_matching = Task(name="graph_matching", description="graph matching", label
 
 # methods
 base_method = Explanation_Method(name="base_method")
-subgraphx = Perturbations(name="subgraphx", label="subgraphx", explains_with=[subgraph],
+subgraphx = Perturbations(name="Subgraphx", description="Subgraphx is a novel method utilizing Monte Carlo Tree Search to extract relevant subgraphs as explanations.",
+    label="subgraphx", explains_with=[subgraph], link="https://arxiv.org/pdf/2102.05152.pdf", image="subgraph.png",
     can_explain=[node_classification_regression, edge_prediction, graph_classification_regression])
-gnnexplainer = Perturbations(name="gnnexplainer", label="gnnexplainer", explains_with=[soft_mask_edge, soft_mask_node],
+
+gnnexplainer = Perturbations(name="GNNExplainer", description="GNNExplainer is one of the first GNN explainability methods, and stood the test of time due to it's wide range of applicability and good performances.",
+    label="gnnexplainer", explains_with=[soft_mask_edge, soft_mask_node], link="https://proceedings.neurips.cc/paper/2019/file/d80b7040b773199015de6d3b4293c8ff-Paper.pdf", image="karate.png",
     can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
-pgexplainer = Perturbations(name="pgexplainer", label="pgexplainer", explains_with=[hard_mask_edge],
+
+pgexplainer = Perturbations(name="PGExplainer", description="PGExplainer is a learning-based parametrized explainer which exhibits good results, especially on generalization.",
+    label="pgexplainer", explains_with=[hard_mask_edge], link="https://arxiv.org/pdf/2011.04573.pdf", image="karate.png",
     can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
-graphmask = Perturbations(name="graphmask", label="graphmask", explains_with=[hard_mask_edge],
+
+graphmask = Perturbations(name="GraphMask", description="GraphMask is a very effective graph explainability method originally developped for Natural Language Processing purposes.",
+    label="graphmask", explains_with=[hard_mask_edge], link="https://arxiv.org/pdf/2010.00577.pdf", image="karate.png",
     can_explain=[node_classification_regression, graph_classification_regression])
-pgmexplainer = Surrogate(name="pgmexplainer", label="pgmexplainer", explains_with=[bayesian_network],
+
+pgmexplainer = Surrogate(name="PGM-Explainer", description="PGM-Explainer is a surrogate-based method which proposes to explain GNNs using a white box probabilistic graphical model (Bayesian network).",
+    label="pgmexplainer", explains_with=[bayesian_network], link="https://arxiv.org/pdf/2010.05788.pdf", image="nb.png",
     can_explain=[node_classification_regression, edge_classification_regression, edge_prediction, graph_classification_regression, community_detection, graph_clustering])
-gnnlrp = Decomposition(name="gnnlrp", label="gnnlrp", explains_with=[walk],
+
+gnnlrp = Decomposition(name="GNN-LRP", description='GNN-LRP is a method exploiting a "natural" explanation present in GNNs by using layer-wise relevance propagation.',
+    label="gnnlrp", explains_with=[walk], link="https://arxiv.org/pdf/2006.03589.pdf", image="lrp.png",
     can_explain=[node_classification_regression, graph_classification_regression])
-xgnn = Generation(name="xgnn", label="xgnn", explains_with=[typical_graph],
+
+xgnn = Generation(name="XGNN", description="XGNN is a mode-level explanation method, meaning that it aims to explain an entire GNN model rather than a single input/output pair.",
+    label="xgnn", explains_with=[typical_graph], link="https://arxiv.org/pdf/2006.02587.pdf", image="karate.png",
     can_explain=[graph_classification_regression])
 
 def sparql_query(format, task):

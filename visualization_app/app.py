@@ -3,13 +3,8 @@ from ontology import *
 
 app = Flask(__name__)
 
-original_list = [[["edge"], ["prediction"], ["PGM-explainer"]],
-            [["edge"], ["classification"], ["subgraphx"]],
-            [["node"], ["prediction"], ["GNNexplainer"]]]
-
-original_list = [{"name":"Enter some criteria to get started."}]
-
 base_status = ""
+original_list = []
 
 backup_list = original_list
 
@@ -38,9 +33,8 @@ def filter():
     title = request.form
 
     print(title)
-    tmp_list = sparql_query(title["format"], title["task"])
+    tmp_list = [x[0] for x in sparql_query(title["format"], title["task"])]
     original_list = tmp_list
-    original_list = [x[0].details() for x in tmp_list]
-    print(title)
+    print(tmp_list)
     base_status = f"explaining {label_query(title['task']).describe()} with {label_query(title['format']).describe()}."
     return redirect(url_for("home"))
