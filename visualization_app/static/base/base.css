@@ -1,0 +1,180 @@
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+html,body{
+  display: grid;
+  height: 100%;
+  place-items: center;
+  background: #eaf4ff;
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    font-size: 40px;
+    color: #0069d9;
+}
+
+.wrapper{
+  display: inline-flex;
+  background: #fff;
+  min-height: 100px;
+  width: 80%;
+  min-width: 400px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+  /* margin: 20px 15px; */
+  margin: 10px auto;
+  box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+}
+
+.wrapper p {
+    margin: 10px 10px !important;
+}
+
+#list {
+    flex-direction: column;
+}
+
+.wrapper .option{
+  background: #fff;
+  font-size: 20px;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+
+.wrapper button:hover {
+  border-color: #0069d9;
+  background: #0069d9;
+  color: #fff;
+}
+
+.wrapper button{
+    font-size: 30px !important;
+    width: 20% !important;
+}
+
+
+input {
+    font-size: 20px;
+}
+
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #0069d9;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+
+input[type="radio"]{
+  display: none;
+}
+
+input[type="radio"]:checked:checked + label {
+  border-color: #0069d9;
+  background: #0069d9;
+}
+
+
+input[type="radio"]:checked:checked + label .dot {
+  background: #fff;
+}
+input[type="radio"]:checked:checked + label .dot::before {
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 20px;
+  color: #808080;
+}
+input[type="radio"]:checked:checked + label span {
+  color: #fff;
+}
+
+/* Disabled RB effect */
+
+input[type="radio"]:disabled + label{
+  background-color: lightgrey;
+  color: #fff;
+  border-color: #808080;
+}
+
+input[type="radio"]:disabled + label span{
+  color: #808080;
+}
+
+input[type="radio"]:disabled + label .dot{
+  background: #fff;
+}
+
+/* tooltips */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150%;
+  background-color: #808080d2;
+  color: #fff !important;
+  /* border: 2px solid #808080d2; */
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  /* left: 50%;
+  margin-left: -50%; */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #808080d2 transparent transparent transparent;
+}
