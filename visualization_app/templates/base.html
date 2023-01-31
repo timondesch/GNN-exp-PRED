@@ -26,9 +26,15 @@
                     </label>
 
                     <input type="radio" name="type" id="solo" value="solo">
-                    <label for="solo" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
-                        element.disabled=true
-                    });">
+                    <label for="solo" class="option" onclick="
+                    document.querySelectorAll('#GCR, #GM').forEach(element => {
+                        element.disabled = true;
+                        if (element.checked) {
+                            element.checked = false;
+                            document.querySelector('#any').checked = true;
+                        }
+                    });
+                    ">
                         <div class="dot"></div>
                         <span>Unique graph</span>
                     </label>
