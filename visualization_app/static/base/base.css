@@ -34,12 +34,28 @@ h1 {
   box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
 }
 
+
+.wrapper_tasks {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+}
+
 .wrapper p {
     margin: 10px 10px !important;
 }
 
 #list {
     flex-direction: column;
+}
+
+.wrapper_tasks .option{
+  width: 48% !important;
+  margin: 1% 0 !important;
+}
+
+.wrapper_tasks .option span{
+  font-size: 100% !important;
+  color: #808080;
 }
 
 .wrapper .option{
@@ -81,6 +97,13 @@ input {
   border-radius: 50%;
   position: relative;
 }
+
+.wrapper_tasks .option .dot{
+  position: absolute !important;
+  left: 5% !important;
+  top: calc(50%-10px) !important;
+}
+
 .wrapper .option .dot::before{
   position: absolute;
   content: "";

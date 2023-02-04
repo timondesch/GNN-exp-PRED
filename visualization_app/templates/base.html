@@ -50,9 +50,10 @@
                 }
             </script>
 
-            <div class="wrapper">
+            <div class="wrapper wrapper_tasks">
                     <input type="radio" name="task" id="any" value="Task" checked>
-                    <label for="any" class="option" onclick="hide_img();">
+                    <label for="any" class="option tooltip" onclick="hide_img();">
+                        <span class="tooltiptext">Match any task</span>
                         <div class="dot"></div>
                         <span>Any</span>
                     </label>
@@ -64,7 +65,7 @@
                     });">
                         <span class="tooltiptext">Node classification/regression</span>
                         <div class="dot"></div>
-                        <span>NCR</span>
+                        <span>Node classification/regression</span>
                     </label>
 
                     <input type="radio" name="task" id="ECR" value="edge_classification_regression">
@@ -74,7 +75,7 @@
                     });">
                         <span class="tooltiptext">Edge classification/regression</span>
                         <div class="dot"></div>
-                        <span>ECR</span>
+                        <span>Edge classification/regression</span>
                     </label>
 
                     <input type="radio" name="task" id="EP" value="edge_prediction">
@@ -84,7 +85,7 @@
                     });">
                         <span class="tooltiptext">Edge prediction</span>
                         <div class="dot"></div>
-                        <span>EP</span>
+                        <span>Edge prediction</span>
                     </label>
 
                     <input type="radio" name="task" id="CD" value="community_detection">
@@ -94,8 +95,19 @@
                     });">
                         <span class="tooltiptext">Community detection</span>
                         <div class="dot"></div>
-                        <span>CD</span>
+                        <span>Community detection</span>
                     </label>
+
+                    <input type="radio" name="task" id="GG" value="graph_generation">
+                    <label for="GG" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        element.setAttribute('src', 'static/tasks/cd.png');
+                        element.setAttribute('height', '300px');
+                    });">
+                        <span class="tooltiptext">Graph generation</span>
+                        <div class="dot"></div>
+                        <span>Graph generation</span>
+                    </label>
+
 
                     <input type="radio" name="task" id="GCR" value="graph_classification_regression">
                     <label for="GCR" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
@@ -106,7 +118,7 @@
                     });">
                         <span class="tooltiptext">Graph classification/regression</span>
                         <div class="dot"></div>
-                        <span>GCR</span>
+                        <span>Graph classification/regression</span>
                     </label>
 
                     <input type="radio" name="task" id="GM" value="graph_matching">
@@ -118,7 +130,7 @@
                     });">
                         <span class="tooltiptext">Graph matching</span>
                         <div class="dot"></div>
-                        <span>GM</span>
+                        <span>Graph matching</span>
                     </label>
             </div>
 
