@@ -28,6 +28,7 @@
                     <input type="radio" name="type" id="solo" value="solo">
                     <label for="solo" class="option" onclick="
                     document.querySelectorAll('#GCR, #GM').forEach(element => {
+                        hide_img();
                         element.disabled = true;
                         if (element.checked) {
                             element.checked = false;
@@ -40,12 +41,18 @@
                     </label>
             </div>
 
-            <div class="wrapper">
-                    <input type="radio" name="task" id="any" value="Task" checked>
-                    <label for="any" class="option" onclick="document.querySelectorAll('#task_img').forEach(element => {
+            <script>
+                function hide_img() {
+                    document.querySelectorAll('#task_img').forEach(element => {
                         element.setAttribute('src', '');
                         element.setAttribute('height', '0px');
-                    });">
+                    });
+                }
+            </script>
+
+            <div class="wrapper">
+                    <input type="radio" name="task" id="any" value="Task" checked>
+                    <label for="any" class="option" onclick="hide_img();">
                         <div class="dot"></div>
                         <span>Any</span>
                     </label>
