@@ -131,6 +131,7 @@ with onto:
     class focuses_on(Task >> Item, ow2.ObjectProperty): pass
 
 base_format = Explanation_Format(description="any explanation format", label="Explanation_Format")
+base_mask = Mask(description="a mask", label="Mask")
 base_task = Task(description="any task", label="Task")
 
 # formats
@@ -240,5 +241,4 @@ def label_query(label):
     return values[0][0]
 
 if __name__ == '__main__':
-    for method in sparql_query("Hard_Mask", "Task"):
-        print(label_query("subgraph"))
+    print("ontology initialized as main")
