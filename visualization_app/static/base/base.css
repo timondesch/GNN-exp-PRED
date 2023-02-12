@@ -31,6 +31,13 @@ h2 {
   transition: .4s height ease;
 }
 
+#format_img {
+  -webkit-transition: .4s height ease;
+  -moz-transition: .4s height ease;
+  -o-transition: .4s height ease;
+  transition: .4s height ease;
+}
+
 .wrapper{
   width: 80%;
   min-width: 400px;
