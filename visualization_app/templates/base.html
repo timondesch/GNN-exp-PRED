@@ -46,7 +46,7 @@
                 function hide_img() {
                     document.querySelectorAll('#task_img').forEach(element => {
                         element.setAttribute('src', '');
-                        element.setAttribute('height', '0px');
+                        element.style.height = '0px';
                     });
                 }
             </script>
@@ -62,7 +62,7 @@
                     <input type="radio" name="task" id="NCR" value="node_classification_regression">
                     <label for="NCR" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
                         element.setAttribute('src', 'static/tasks/ncr.png');
-                        element.setAttribute('height', '300px');
+                        element.style.height = '300px';
                     });">
                         <span class="tooltiptext">Node classification/regression</span>
                         <div class="dot"></div>
@@ -72,7 +72,7 @@
                     <input type="radio" name="task" id="ECR" value="edge_classification_regression">
                     <label for="ECR" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
                         element.setAttribute('src', 'static/tasks/ecr.png');
-                        element.setAttribute('height', '300px');
+                        element.style.height = '300px';
                     });">
                         <span class="tooltiptext">Edge classification/regression</span>
                         <div class="dot"></div>
@@ -82,7 +82,7 @@
                     <input type="radio" name="task" id="EP" value="edge_prediction">
                     <label for="EP" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
                         element.setAttribute('src', 'static/tasks/lp.png');
-                        element.setAttribute('height', '300px');
+                        element.style.height = '300px';
                     });">
                         <span class="tooltiptext">Edge prediction</span>
                         <div class="dot"></div>
@@ -92,7 +92,7 @@
                     <input type="radio" name="task" id="CD" value="community_detection">
                     <label for="CD" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
                         element.setAttribute('src', 'static/tasks/cd.png');
-                        element.setAttribute('height', '300px');
+                        element.style.height = '300px';
                     });">
                         <span class="tooltiptext">Community detection</span>
                         <div class="dot"></div>
@@ -101,8 +101,8 @@
 
                     <input type="radio" name="task" id="GG" value="graph_generation">
                     <label for="GG" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
-                        element.setAttribute('src', 'static/tasks/cd.png');
-                        element.setAttribute('height', '300px');
+                        element.setAttribute('src', 'static/tasks/gg.png');
+                        element.style.height = '300px';
                     });">
                         <span class="tooltiptext">Graph generation</span>
                         <div class="dot"></div>
@@ -114,7 +114,7 @@
                     <label for="GCR" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
                         if (document.querySelector('#GCR').disabled === false){
                             element.setAttribute('src', 'static/tasks/gcr.png');
-                            element.setAttribute('height', '300px');
+                            element.style.height = '300px';
                         }
                     });">
                         <span class="tooltiptext">Graph classification/regression</span>
@@ -126,7 +126,7 @@
                     <label for="GM" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
                         if (document.querySelector('#GM').disabled === false){
                             element.setAttribute('src', 'static/tasks/gm.png');
-                            element.setAttribute('height', '300px');
+                            element.style.height = '300px';
                         }
                     });">
                         <span class="tooltiptext">Graph matching</span>
@@ -134,7 +134,9 @@
                         <span>Graph matching</span>
                     </label>
 
-            <img id="task_img" class="task" height="0px">
+            <div style="width: 80%;min-width: 400px">
+                <img id="task_img" height="0px">
+            </div>
             </div>
 
 
