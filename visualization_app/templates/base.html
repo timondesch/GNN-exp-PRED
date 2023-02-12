@@ -12,34 +12,36 @@
     <div style="margin-top: 50px; width: 100%; text-align: center;">
         <div class="wrapper">
         <h1>User-centric taxonomy of GNN explainability methods</h1>
-        <h2>test</h2>
         </div>
         <br>
 
-        <form action="/filter" method="post">
+        <form action="/filter" method="post" class="meta_wrapper">
+            <div style="width: 80%;min-width: 400px; display: inline-flex; align-items: center;justify-content: space-evenly;margin: 50px 0 20px 0;">
+                <h2>Type of dataset</h2>
+            </div>
             <div class="wrapper">
-                    <input type="radio" name="type" id="multi" value="multi" checked>
-                    <label for="multi" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
-                        element.disabled=false
-                    });">
-                        <div class="dot"></div>
-                        <span>Multiple graphs</span>
-                    </label>
+                <input type="radio" name="type" id="multi" value="multi" checked>
+                <label for="multi" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
+                    element.disabled=false
+                });">
+                    <div class="dot"></div>
+                    <span>Multiple graphs</span>
+                </label>
 
-                    <input type="radio" name="type" id="solo" value="solo">
-                    <label for="solo" class="option" onclick="
-                    document.querySelectorAll('#GCR, #GM').forEach(element => {
-                        hide_img();
-                        element.disabled = true;
-                        if (element.checked) {
-                            element.checked = false;
-                            document.querySelector('#any').checked = true;
-                        }
-                    });
-                    ">
-                        <div class="dot"></div>
-                        <span>Unique graph</span>
-                    </label>
+                <input type="radio" name="type" id="solo" value="solo">
+                <label for="solo" class="option" onclick="
+                document.querySelectorAll('#GCR, #GM').forEach(element => {
+                    hide_img();
+                    element.disabled = true;
+                    if (element.checked) {
+                        element.checked = false;
+                        document.querySelector('#any').checked = true;
+                    }
+                });
+                ">
+                    <div class="dot"></div>
+                    <span>Unique graph</span>
+                </label>
             </div>
 
             <script>
@@ -51,6 +53,9 @@
                 }
             </script>
 
+            <div style="width: 80%;min-width: 400px; display: inline-flex; align-items: center;justify-content: space-evenly;margin: 50px 0 20px 0;">
+                <h2>Type of task</h2>
+            </div>
             <div class="wrapper wrapper_tasks">
                     <input type="radio" name="task" id="any" value="Task" checked>
                     <label for="any" class="option tooltip" onclick="hide_img();">
@@ -139,7 +144,9 @@
             </div>
             </div>
 
-
+            <div style="width: 80%;min-width: 400px; display: inline-flex; align-items: center;justify-content: space-evenly;margin: 50px 0 20px 0;">
+                <h2>Explanation format</h2>
+            </div>
             <div class="wrapper">
                     <select name="format" class="option">
                         <option value="Explanation_Format">Any format</option>

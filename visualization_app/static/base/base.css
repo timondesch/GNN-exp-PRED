@@ -19,6 +19,11 @@ h1 {
     color: #0069d9;
 }
 
+h2 {
+  text-align: center;
+  font-size: 35px;
+}
+
 #task_img {
   -webkit-transition: .4s height ease;
   -moz-transition: .4s height ease;
@@ -27,11 +32,11 @@ h1 {
 }
 
 .wrapper{
+  width: 80%;
+  min-width: 400px;
   display: inline-flex;
   background: #fff;
   min-height: 100px;
-  width: 80%;
-  min-width: 400px;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 5px;
@@ -69,13 +74,11 @@ h1 {
   background: #fff;
   font-size: 20px;
   height: 60px;
-  /* width: 100%; */
   width: 48% !important;
   margin: 1% 0 !important;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  /* margin: 0 10px; */
   border-radius: 5px;
   cursor: pointer;
   padding: 0 10px;
