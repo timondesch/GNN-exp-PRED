@@ -12,6 +12,7 @@
     <div style="margin-top: 50px; width: 100%; text-align: center;">
         <div class="wrapper">
         <h1>User-centric taxonomy of GNN explainability methods</h1>
+        <h2>test</h2>
         </div>
         <br>
 
@@ -80,7 +81,7 @@
 
                     <input type="radio" name="task" id="EP" value="edge_prediction">
                     <label for="EP" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
-                        element.setAttribute('src', 'static/tasks/ep.png');
+                        element.setAttribute('src', 'static/tasks/lp.png');
                         element.setAttribute('height', '300px');
                     });">
                         <span class="tooltiptext">Edge prediction</span>
@@ -132,15 +133,16 @@
                         <div class="dot"></div>
                         <span>Graph matching</span>
                     </label>
+
+            <img id="task_img" class="task" height="0px">
             </div>
 
-            <img id="task_img" height="0px">
 
             <div class="wrapper">
                     <select name="format" class="option">
                         <option value="Explanation_Format">Any format</option>
                         <option value="subgraph">Subgraph</option>
-                        <option value="walk">walk</option>
+                        <option value="walk">Walk</option>
                         <option value="typical_graph">Typical graph</option>
                         <option value="Mask">Mask</option>
                         <option value="bayesian_network">Bayesian network</option>
