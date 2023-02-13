@@ -152,6 +152,7 @@ graph_classification_regression = Task(name="graph_classification_regression", d
 community_detection = Task(name="community_detection", description="community detection", label="community_detection")
 graph_clustering = Task(name="graph_clustering", description="graph clustering", label="graph_clustering", focuses_on=[Graph])
 graph_matching = Task(name="graph_matching", description="graph matching", label="graph_matching", focuses_on=[Graph])
+graph_generation = Task(name="graph_generation", description="graph generation", label="graph_generation", focuses_on=[Graph])
 
 # methods
 base_method = Explanation_Method(name="base_method")

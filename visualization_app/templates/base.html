@@ -184,19 +184,23 @@
         <div class="wrapper" id="list">
         <h2 style="margin-bottom: 20px;">Methods {{s}}</h2>
         {% if l|length == 0 %}
-        <p class="option">No method matches the entered criteria.</p>
+            {% if s == "" %}
+                    <p class="option">Please enter some criteria and click the filter button to get started.</p>
+            {% else %}
+                <p class="option">No method matches the entered criteria.</p>
+            {% endif  %}
         {% else %}
-        {% for item in l %}
-            <!-- <p class="option">{{item['name']}}</p> -->
-            <div class="wrapper">
-                <div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);grid-column-gap: 0px;grid-row-gap: 0px;">   
-                    <h3 style="grid-area: 1 / 1 / 2 / 4;">{{item.get_name()}}</h3>
-                    <img style="grid-area: 2 / 1 / 6 / 4;margin-left: auto; margin-right: auto; width: 70%;" src="static/{{item.get_image()}}">
-                    <p style="text-align: justify; grid-area: 2 / 4 / 5 / 6;">{{item.get_description()}}</p>
-                    <a href="{{item.get_link()}}" target="_blank" rel="noopener noreferrer" style=" grid-area: 5 / 4 / 6 / 6;">article link</a>
+            {% for item in l %}
+                <!-- <p class="option">{{item['name']}}</p> -->
+                <div class="wrapper">
+                    <div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);grid-column-gap: 0px;grid-row-gap: 0px;">   
+                        <h3 style="grid-area: 1 / 1 / 2 / 4;">{{item.get_name()}}</h3>
+                        <img style="grid-area: 2 / 1 / 6 / 4;margin-left: auto; margin-right: auto; width: 70%;" src="static/{{item.get_image()}}">
+                        <p style="text-align: justify; grid-area: 2 / 4 / 5 / 6;">{{item.get_description()}}</p>
+                        <a href="{{item.get_link()}}" target="_blank" rel="noopener noreferrer" style=" grid-area: 5 / 4 / 6 / 6;">article link</a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         {% endif %}
         </div>
     </div>
