@@ -14,108 +14,164 @@
         <h1>User-centric taxonomy of GNN explainability methods</h1>
         </div>
         <br>
-        <!-- <form action="/add" method="post">
-            <div class="wrapper">
-                <input class="option" type="text" name="title" placeholder="Add a method..."><br>
-            <button type="submit" class="option">Add</button>
+
+        <form action="/filter" method="post" class="meta_wrapper">
+            <div style="width: 80%;min-width: 400px; display: inline-flex; align-items: center;justify-content: space-evenly;margin: 50px 0 20px 0;">
+                <h2>Type of dataset</h2>
             </div>
-        </form> -->
-
-
-        <form action="/filter" method="post">
-            <!-- <div class="wrapper">
-                    <input type="radio" name="filter" id="edge" value="edge">
-                    <label for="edge" class="option">
-                        <div class="dot"></div>
-                        <span>Edge</span>
-                    </label>
-
-                    <input type="radio" name="filter" id="node" value="node">
-                    <label for="node" class="option">
-                        <div class="dot"></div>
-                        <span>Node</span>
-                    </label>
-            </div> -->
-
-
             <div class="wrapper">
-                    <input type="radio" name="type" id="multi" value="multi" checked>
-                    <label for="multi" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
-                        element.disabled=false
-                    });">
-                        <div class="dot"></div>
-                        <span>Multiple graphs</span>
-                    </label>
+                <input type="radio" name="type" id="multi" value="multi" checked>
+                <label for="multi" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
+                    element.disabled=false
+                });">
+                    <div class="dot"></div>
+                    <span>Multiple graphs</span>
+                </label>
 
-                    <input type="radio" name="type" id="solo" value="solo">
-                    <label for="solo" class="option" onclick="document.querySelectorAll('#GCR, #GM').forEach(element => {
-                        element.disabled=true
-                    });">
-                        <div class="dot"></div>
-                        <span>Unique graph</span>
-                    </label>
+                <input type="radio" name="type" id="solo" value="solo">
+                <label for="solo" class="option" onclick="
+                document.querySelectorAll('#GCR, #GM').forEach(element => {
+                    hide_img();
+                    element.disabled = true;
+                    if (element.checked) {
+                        element.checked = false;
+                        document.querySelector('#any').checked = true;
+                    }
+                });
+                ">
+                    <div class="dot"></div>
+                    <span>Unique graph</span>
+                </label>
             </div>
 
-            <div class="wrapper">
+            <script>
+                function hide_img() {
+                    document.querySelectorAll('#task_img').forEach(element => {
+                        element.setAttribute('src', '');
+                        element.style.height = '0px';
+                    });
+                }
+            </script>
+
+            <div style="width: 80%;min-width: 400px; display: inline-flex; align-items: center;justify-content: space-evenly;margin: 50px 0 20px 0;">
+                <h2>Type of task</h2>
+            </div>
+            <div class="wrapper wrapper_tasks">
                     <input type="radio" name="task" id="any" value="Task" checked>
-                    <label for="any" class="option">
+                    <label for="any" class="option tooltip" onclick="hide_img();">
+                        <span class="tooltiptext">Match any task</span>
                         <div class="dot"></div>
                         <span>Any</span>
                     </label>
 
                     <input type="radio" name="task" id="NCR" value="node_classification_regression">
-                    <label for="NCR" class="option tooltip">
+                    <label for="NCR" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        element.setAttribute('src', 'static/tasks/ncr.png');
+                        element.style.height = '300px';
+                    });">
                         <span class="tooltiptext">Node classification/regression</span>
                         <div class="dot"></div>
-                        <span>NCR</span>
+                        <span>Node classification/regression</span>
                     </label>
 
                     <input type="radio" name="task" id="ECR" value="edge_classification_regression">
-                    <label for="ECR" class="option tooltip">
+                    <label for="ECR" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        element.setAttribute('src', 'static/tasks/ecr.png');
+                        element.style.height = '300px';
+                    });">
                         <span class="tooltiptext">Edge classification/regression</span>
                         <div class="dot"></div>
-                        <span>ECR</span>
+                        <span>Edge classification/regression</span>
                     </label>
 
                     <input type="radio" name="task" id="EP" value="edge_prediction">
-                    <label for="EP" class="option tooltip">
+                    <label for="EP" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        element.setAttribute('src', 'static/tasks/lp.png');
+                        element.style.height = '300px';
+                    });">
                         <span class="tooltiptext">Edge prediction</span>
                         <div class="dot"></div>
-                        <span>EP</span>
+                        <span>Edge prediction</span>
                     </label>
 
                     <input type="radio" name="task" id="CD" value="community_detection">
-                    <label for="CD" class="option tooltip">
+                    <label for="CD" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        element.setAttribute('src', 'static/tasks/cd.png');
+                        element.style.height = '300px';
+                    });">
                         <span class="tooltiptext">Community detection</span>
                         <div class="dot"></div>
-                        <span>CD</span>
+                        <span>Community detection</span>
                     </label>
 
+                    <input type="radio" name="task" id="GG" value="graph_generation">
+                    <label for="GG" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        element.setAttribute('src', 'static/tasks/gg.png');
+                        element.style.height = '300px';
+                    });">
+                        <span class="tooltiptext">Graph generation</span>
+                        <div class="dot"></div>
+                        <span>Graph generation</span>
+                    </label>
+
+
                     <input type="radio" name="task" id="GCR" value="graph_classification_regression">
-                    <label for="GCR" class="option tooltip">
+                    <label for="GCR" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        if (document.querySelector('#GCR').disabled === false){
+                            element.setAttribute('src', 'static/tasks/gcr.png');
+                            element.style.height = '300px';
+                        }
+                    });">
                         <span class="tooltiptext">Graph classification/regression</span>
                         <div class="dot"></div>
-                        <span>GCR</span>
+                        <span>Graph classification/regression</span>
                     </label>
 
                     <input type="radio" name="task" id="GM" value="graph_matching">
-                    <label for="GM" class="option tooltip">
+                    <label for="GM" class="option tooltip" onclick="document.querySelectorAll('#task_img').forEach(element => {
+                        if (document.querySelector('#GM').disabled === false){
+                            element.setAttribute('src', 'static/tasks/gm.png');
+                            element.style.height = '300px';
+                        }
+                    });">
                         <span class="tooltiptext">Graph matching</span>
                         <div class="dot"></div>
-                        <span>GM</span>
+                        <span>Graph matching</span>
                     </label>
+
+            <div style="display: flex; align-items: center;  justify-content: center;width: 80%;min-width: 400px">
+                <img id="task_img" height="0px">
+            </div>
             </div>
 
+            <script>
+                function hide_format_img() {
+                    document.querySelectorAll('#format_img').forEach(element => {
+                        element.setAttribute('src', '');
+                        element.style.height = '0px';
+                    })};
 
+                function show_format_img(name) {
+                    document.querySelectorAll('#format_img').forEach(element => {
+                        element.setAttribute('src', "static/format/" + name + ".png");
+                        element.style.height = '300px';
+                })};
+            </script>
+            <div style="width: 80%;min-width: 400px; display: inline-flex; align-items: center;justify-content: space-evenly;margin: 50px 0 20px 0;">
+                <h2>Explanation format</h2>
+            </div>
             <div class="wrapper">
                     <select name="format" class="option">
-                        <option value="Explanation_Format">Any format</option>
-                        <option value="subgraph">Subgraph</option>
-                        <option value="walk">Walk</option>
-                        <option value="typical_graph">Typical graph</option>
-                        <option value="Mask">Mask</option>
-                        <option value="bayesian_network">Bayesian network</option>
+                        <option value="Explanation_Format" onclick="hide_format_img()">Any format</option>
+                        <option value="subgraph" onclick="show_format_img('subgraph')">Subgraph</option>
+                        <option value="walk" onclick="show_format_img('walk')">Walk</option>
+                        <option value="typical_graph" onclick="show_format_img('typical_graph')">Typical graph</option>
+                        <option value="Mask" onclick="show_format_img('mask')">Mask</option>
+                        <option value="bayesian_network" onclick="show_format_img('bn')">Bayesian network</option>
                     </select>
+            <div style="text-align: center; width: 80%;min-width: 400px">
+                <img id="format_img" height="0px" style="margin:auto;">
+            </div>
             </div>
             <div class="wrapper">
                 <button type="submit" class="option">Filter</button>
@@ -128,19 +184,23 @@
         <div class="wrapper" id="list">
         <h2 style="margin-bottom: 20px;">Methods {{s}}</h2>
         {% if l|length == 0 %}
-        <p class="option">No method matches the entered criteria.</p>
+            {% if s == "" %}
+                    <p class="option">Please enter some criteria and click the filter button to get started.</p>
+            {% else %}
+                <p class="option">No method matches the entered criteria.</p>
+            {% endif  %}
         {% else %}
-        {% for item in l %}
-            <!-- <p class="option">{{item['name']}}</p> -->
-            <div class="wrapper">
-                <div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);grid-column-gap: 0px;grid-row-gap: 0px;">   
-                    <h3 style="grid-area: 1 / 1 / 2 / 4;">{{item.get_name()}}</h3>
-                    <img style="grid-area: 2 / 1 / 6 / 4;margin-left: auto; margin-right: auto; width: 70%;" src="static/{{item.get_image()}}">
-                    <p style="text-align: justify; grid-area: 2 / 4 / 5 / 6;">{{item.get_description()}}</p>
-                    <a href="{{item.get_link()}}" target="_blank" rel="noopener noreferrer" style=" grid-area: 5 / 4 / 6 / 6;">article link</a>
+            {% for item in l %}
+                <!-- <p class="option">{{item['name']}}</p> -->
+                <div class="wrapper">
+                    <div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);grid-column-gap: 0px;grid-row-gap: 0px;">   
+                        <h3 style="grid-area: 1 / 1 / 2 / 4;">{{item.get_name()}}</h3>
+                        <img style="grid-area: 2 / 1 / 6 / 4;margin-left: auto; margin-right: auto; width: 70%;" src="static/{{item.get_image()}}">
+                        <p style="text-align: justify; grid-area: 2 / 4 / 5 / 6;">{{item.get_description()}}</p>
+                        <a href="{{item.get_link()}}" target="_blank" rel="noopener noreferrer" style=" grid-area: 5 / 4 / 6 / 6;">article link</a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         {% endif %}
         </div>
     </div>

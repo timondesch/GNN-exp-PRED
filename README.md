@@ -1,1 +1,1 @@
-![Ontology diagram](./ontology.svg)
+![Ontology diagram](./ontology.png)
