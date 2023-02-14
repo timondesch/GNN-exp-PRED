@@ -131,7 +131,7 @@ with onto:
     class focuses_on(Task >> Item, ow2.ObjectProperty): pass
 
 base_format = Explanation_Format(description="any explanation format", label="Explanation_Format")
-base_mask = Mask(description="a mask", label="Mask")
+mask_format = Mask(description="any explanation format based on masks", label="Mask")
 base_task = Task(description="any task", label="Task")
 
 # formats

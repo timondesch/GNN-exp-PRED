@@ -19,14 +19,6 @@ def add():
     original_list.append([[title], [title], [title]])
     return redirect(url_for("home"))
 
-# @app.post("/filter")
-# def filter():
-#     global original_list
-#     title = request.form
-#     if len(title) == 0: original_list = backup_list
-#     else: original_list = [elem for elem in backup_list if elem[0] == [title["filter"]]]
-#     return redirect(url_for("home"))
-
 @app.post("/filter")
 def filter():
     global original_list, base_status
